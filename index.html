@@ -15,10 +15,57 @@
         </div>
 
         <form class="control-form" id="thumbnail-form">
-          <label class="field field-full" for="title-input">
+          <fieldset class="shape-options">
+            <legend>이미지 모양</legend>
+            <label class="shape-option">
+              <input type="radio" name="image-shape" value="square" checked>
+              <span class="shape-preview shape-square" aria-hidden="true"></span>
+            </label>
+            <label class="shape-option">
+              <input type="radio" name="image-shape" value="rounded">
+              <span class="shape-preview shape-rounded" aria-hidden="true"></span>
+            </label>
+            <label class="shape-option">
+              <input type="radio" name="image-shape" value="circle">
+              <span class="shape-preview shape-circle" aria-hidden="true"></span>
+            </label>
+            <label class="shape-option">
+              <input type="radio" name="image-shape" value="pill">
+              <span class="shape-preview shape-pill" aria-hidden="true"></span>
+            </label>
+            <label class="shape-option">
+              <input type="radio" name="image-shape" value="diamond">
+              <span class="shape-preview shape-diamond" aria-hidden="true"></span>
+            </label>
+          </fieldset>
+
+          <div class="field field-full">
             <span>이미지로 생성할 텍스트 입력</span>
-            <textarea id="title-input" rows="4" maxlength="160">이미지로 생성할 텍스트 입력</textarea>
-          </label>
+            <div class="text-editor" id="text-editor" contenteditable="true" role="textbox" aria-multiline="true">텍스트입력</div>
+          </div>
+
+          <fieldset class="style-options">
+            <legend>선택한 텍스트 스타일</legend>
+            <button class="style-button" type="button" data-command="bold" aria-label="선택한 텍스트 볼드 적용">B</button>
+            <button class="style-button" type="button" data-command="underline" aria-label="선택한 텍스트 밑줄 적용">U</button>
+            <button class="style-button" type="button" data-command="strikeThrough" aria-label="선택한 텍스트 취소선 적용">S</button>
+          </fieldset>
+
+          <fieldset class="style-options">
+            <legend>텍스트 정렬</legend>
+            <label class="radio-option">
+              <input type="radio" name="text-align" value="left">
+              <span>좌측</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="text-align" value="center" checked>
+              <span>가운데</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="text-align" value="right">
+              <span>우측</span>
+            </label>
+          </fieldset>
 
           <div class="field-grid">
             <label class="field" for="filename-input">
@@ -31,7 +78,7 @@
               <select id="font-family">
                 <option value="'Noto Sans KR', sans-serif">Noto Sans KR</option>
                 <option value="Pretendard, sans-serif">Pretendard</option>
-                <option value="'Nanum Gothic', 'NanumGothic', sans-serif">나눔 고딕</option>
+                <option value="'Nanum Gothic', 'NanumGothic', sans-serif" selected>나눔 고딕</option>
                 <option value="Arial, sans-serif">Arial</option>
                 <option value="Georgia, serif">Georgia</option>
                 <option value="serif">serif</option>
@@ -41,35 +88,88 @@
 
             <label class="field" for="font-size">
               <span>폰트 크기</span>
-              <input id="font-size" type="number" min="24" max="180" step="1" value="72">
+              <input id="font-size" type="number" min="8" max="180" step="1" value="40">
             </label>
 
-            <label class="field" for="background-color">
-              <span>배경색</span>
-              <input id="background-color" type="color" value="#f7f3ea">
-            </label>
+            <div class="field field-full">
+              <span>색상</span>
+              <div class="color-inputs">
+                <div class="color-control" data-color-group="background">
+                  <span>배경색</span>
+                  <div class="swatches" aria-label="배경색 프리셋">
+                    <button type="button" class="swatch" data-color-target="background-color" data-color="#000000" style="--swatch-color: #000000"></button>
+                    <button type="button" class="swatch" data-color-target="background-color" data-color="#fed002" style="--swatch-color: #fed002"></button>
+                    <button type="button" class="swatch" data-color-target="background-color" data-color="#ffffff" style="--swatch-color: #ffffff"></button>
+                    <button type="button" class="swatch" data-color-target="background-color" data-color="#ff4d4d" style="--swatch-color: #ff4d4d"></button>
+                    <button type="button" class="swatch" data-color-target="background-color" data-color="#2f80ed" style="--swatch-color: #2f80ed"></button>
+                    <button type="button" class="swatch" data-color-target="background-color" data-color="#27ae60" style="--swatch-color: #27ae60"></button>
+                  </div>
+                  <input id="background-color" type="text" value="#000000" inputmode="text" maxlength="7" aria-label="배경색 HEX">
+                </div>
+                <div class="color-control">
+                  <span>글자색</span>
+                  <div class="swatches" aria-label="글자색 프리셋">
+                    <button type="button" class="swatch" data-color-target="text-color" data-color="#000000" style="--swatch-color: #000000"></button>
+                    <button type="button" class="swatch" data-color-target="text-color" data-color="#fed002" style="--swatch-color: #fed002"></button>
+                    <button type="button" class="swatch" data-color-target="text-color" data-color="#ffffff" style="--swatch-color: #ffffff"></button>
+                    <button type="button" class="swatch" data-color-target="text-color" data-color="#ff4d4d" style="--swatch-color: #ff4d4d"></button>
+                    <button type="button" class="swatch" data-color-target="text-color" data-color="#2f80ed" style="--swatch-color: #2f80ed"></button>
+                    <button type="button" class="swatch" data-color-target="text-color" data-color="#27ae60" style="--swatch-color: #27ae60"></button>
+                  </div>
+                  <input id="text-color" type="text" value="#fed002" inputmode="text" maxlength="7" aria-label="글자색 HEX">
+                </div>
+              </div>
+            </div>
 
-            <label class="field" for="text-color">
-              <span>글자색</span>
-              <input id="text-color" type="color" value="#202124">
+            <label class="check-option field-full">
+              <input id="transparent-background" type="checkbox">
+              <span>배경색 없음</span>
             </label>
           </div>
 
           <fieldset class="style-options">
-            <legend>텍스트 스타일</legend>
+            <legend>테두리</legend>
             <label class="check-option">
-              <input id="bold-toggle" type="checkbox" checked>
-              <span>볼드</span>
-            </label>
-            <label class="check-option">
-              <input id="underline-toggle" type="checkbox">
-              <span>밑줄</span>
-            </label>
-            <label class="check-option">
-              <input id="strike-toggle" type="checkbox">
-              <span>취소선</span>
+              <input id="border-enabled" type="checkbox">
+              <span>테두리 포함</span>
             </label>
           </fieldset>
+
+          <div class="field-grid border-options" id="border-options">
+            <fieldset class="line-patterns field-full">
+              <span>선 패턴</span>
+              <label class="line-pattern">
+                <input type="radio" name="border-style" value="solid" checked>
+                <span class="line-preview line-solid" aria-hidden="true"></span>
+              </label>
+              <label class="line-pattern">
+                <input type="radio" name="border-style" value="dashed">
+                <span class="line-preview line-dashed" aria-hidden="true"></span>
+              </label>
+              <label class="line-pattern">
+                <input type="radio" name="border-style" value="dotted">
+                <span class="line-preview line-dotted" aria-hidden="true"></span>
+              </label>
+            </fieldset>
+
+            <label class="field" for="border-width">
+              <span>선 굵기</span>
+              <input id="border-width" type="number" min="1" max="80" step="1" value="4">
+            </label>
+
+            <div class="field field-full color-control">
+              <span>테두리 색상</span>
+              <div class="swatches" aria-label="테두리 색상 프리셋">
+                <button type="button" class="swatch" data-color-target="border-color" data-color="#000000" style="--swatch-color: #000000"></button>
+                <button type="button" class="swatch" data-color-target="border-color" data-color="#fed002" style="--swatch-color: #fed002"></button>
+                <button type="button" class="swatch" data-color-target="border-color" data-color="#ffffff" style="--swatch-color: #ffffff"></button>
+                <button type="button" class="swatch" data-color-target="border-color" data-color="#ff4d4d" style="--swatch-color: #ff4d4d"></button>
+                <button type="button" class="swatch" data-color-target="border-color" data-color="#2f80ed" style="--swatch-color: #2f80ed"></button>
+                <button type="button" class="swatch" data-color-target="border-color" data-color="#27ae60" style="--swatch-color: #27ae60"></button>
+              </div>
+              <input id="border-color" type="text" value="#fed002" inputmode="text" maxlength="7" aria-label="테두리 색상 HEX">
+            </div>
+          </div>
 
           <div class="field-grid">
             <label class="field" for="size-preset">
@@ -78,7 +178,17 @@
                 <option value="1200x630">1200 x 630</option>
                 <option value="1024x1024">1024 x 1024</option>
                 <option value="800x450">800 x 450</option>
-                <option value="custom">직접 입력</option>
+                <option value="custom" selected>직접 입력</option>
+              </select>
+            </label>
+
+            <label class="field" for="output-scale">
+              <span>출력 배율</span>
+              <select id="output-scale">
+                <option value="1">1x</option>
+                <option value="2" selected>2x</option>
+                <option value="3">3x</option>
+                <option value="4">4x</option>
               </select>
             </label>
 
@@ -87,22 +197,44 @@
               <select id="image-extension">
                 <option value="png">PNG</option>
                 <option value="jpg">JPG</option>
-                <option value="webp">WEBP</option>
+                <option value="webp" selected>WEBP</option>
               </select>
             </label>
 
-            <label class="field" for="image-width">
-              <span>가로</span>
-              <input id="image-width" type="number" min="320" max="3000" step="10" value="1200">
-            </label>
-
-            <label class="field" for="image-height">
-              <span>세로</span>
-              <input id="image-height" type="number" min="180" max="3000" step="10" value="630">
-            </label>
+            <div class="field field-full">
+              <span>직접 입력</span>
+              <div class="size-inputs">
+                <label for="image-width">
+                  <span>가로</span>
+                  <input id="image-width" type="number" min="100" max="3000" step="10" value="300">
+                </label>
+                <label for="image-height">
+                  <span>세로</span>
+                  <input id="image-height" type="number" min="100" max="3000" step="10" value="300">
+                </label>
+              </div>
+            </div>
           </div>
 
           <button class="download-button" id="download-button" type="button">이미지 다운로드</button>
+
+          <fieldset class="theme-options">
+            <legend>UI 테마</legend>
+            <label class="radio-option">
+              <input type="radio" name="ui-theme" value="dark" checked>
+              <span>다크</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="ui-theme" value="light">
+              <span>라이트</span>
+            </label>
+          </fieldset>
+
+          <footer class="creator-info">
+            <p>Developer: <a href="https://github.com/zozindev/" target="_blank" rel="noopener noreferrer">zozi</a></p>
+            <p>Repository: <a href="https://github.com/zozindev/TEXT_TO_IMG" target="_blank" rel="noopener noreferrer">TEXT_TO_IMG</a></p>
+            <p>Instagram: <a href="https://www.instagram.com/zozindev/" target="_blank" rel="noopener noreferrer">@zozindev</a></p>
+          </footer>
         </form>
       </section>
 
@@ -112,10 +244,10 @@
             <p class="eyebrow">Preview</p>
             <h2 id="preview-title">미리보기</h2>
           </div>
-          <p class="preview-size" id="preview-size">1200 x 630</p>
+          <p class="preview-size" id="preview-size">300 x 300 @ 2x</p>
         </div>
         <div class="canvas-wrap">
-          <canvas id="thumbnail-canvas" width="1200" height="630" aria-label="썸네일 미리보기"></canvas>
+          <canvas id="thumbnail-canvas" width="600" height="600" aria-label="썸네일 미리보기"></canvas>
         </div>
       </section>
     </main>
