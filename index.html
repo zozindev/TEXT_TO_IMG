@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TEXT_TO_IMG</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="controls" aria-labelledby="controls-title">
+        <div class="brand">
+          <p class="eyebrow">TEXT_TO_IMG</p>
+          <h1 id="controls-title">텍스트 이미지 제작기</h1>
+        </div>
+
+        <form class="control-form" id="thumbnail-form">
+          <label class="field field-full" for="title-input">
+            <span>이미지로 생성할 텍스트 입력</span>
+            <textarea id="title-input" rows="4" maxlength="160">이미지로 생성할 텍스트 입력</textarea>
+          </label>
+
+          <div class="field-grid">
+            <label class="field" for="filename-input">
+              <span>파일명</span>
+              <input id="filename-input" type="text" maxlength="80" placeholder="TTI">
+            </label>
+
+            <label class="field" for="font-family">
+              <span>폰트</span>
+              <select id="font-family">
+                <option value="'Noto Sans KR', sans-serif">Noto Sans KR</option>
+                <option value="Pretendard, sans-serif">Pretendard</option>
+                <option value="'Nanum Gothic', 'NanumGothic', sans-serif">나눔 고딕</option>
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="serif">serif</option>
+                <option value="sans-serif">sans-serif</option>
+              </select>
+            </label>
+
+            <label class="field" for="font-size">
+              <span>폰트 크기</span>
+              <input id="font-size" type="number" min="24" max="180" step="1" value="72">
+            </label>
+
+            <label class="field" for="background-color">
+              <span>배경색</span>
+              <input id="background-color" type="color" value="#f7f3ea">
+            </label>
+
+            <label class="field" for="text-color">
+              <span>글자색</span>
+              <input id="text-color" type="color" value="#202124">
+            </label>
+          </div>
+
+          <fieldset class="style-options">
+            <legend>텍스트 스타일</legend>
+            <label class="check-option">
+              <input id="bold-toggle" type="checkbox" checked>
+              <span>볼드</span>
+            </label>
+            <label class="check-option">
+              <input id="underline-toggle" type="checkbox">
+              <span>밑줄</span>
+            </label>
+            <label class="check-option">
+              <input id="strike-toggle" type="checkbox">
+              <span>취소선</span>
+            </label>
+          </fieldset>
+
+          <div class="field-grid">
+            <label class="field" for="size-preset">
+              <span>이미지 크기</span>
+              <select id="size-preset">
+                <option value="1200x630">1200 x 630</option>
+                <option value="1024x1024">1024 x 1024</option>
+                <option value="800x450">800 x 450</option>
+                <option value="custom">직접 입력</option>
+              </select>
+            </label>
+
+            <label class="field" for="image-extension">
+              <span>확장자</span>
+              <select id="image-extension">
+                <option value="png">PNG</option>
+                <option value="jpg">JPG</option>
+                <option value="webp">WEBP</option>
+              </select>
+            </label>
+
+            <label class="field" for="image-width">
+              <span>가로</span>
+              <input id="image-width" type="number" min="320" max="3000" step="10" value="1200">
+            </label>
+
+            <label class="field" for="image-height">
+              <span>세로</span>
+              <input id="image-height" type="number" min="180" max="3000" step="10" value="630">
+            </label>
+          </div>
+
+          <button class="download-button" id="download-button" type="button">이미지 다운로드</button>
+        </form>
+      </section>
+
+      <section class="preview-panel" aria-labelledby="preview-title">
+        <div class="preview-header">
+          <div>
+            <p class="eyebrow">Preview</p>
+            <h2 id="preview-title">미리보기</h2>
+          </div>
+          <p class="preview-size" id="preview-size">1200 x 630</p>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="thumbnail-canvas" width="1200" height="630" aria-label="썸네일 미리보기"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
