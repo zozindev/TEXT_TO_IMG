@@ -33,9 +33,9 @@ const storageKey = "text-to-img:last-settings";
 const defaultText = "텍스트입력";
 
 const sizePresets = {
-  "1200x630": { width: 1200, height: 630 },
-  "1024x1024": { width: 1024, height: 1024 },
-  "800x450": { width: 800, height: 450 },
+  "1080x1350": { width: 1080, height: 1350 },
+  "1080x1080": { width: 1080, height: 1080 },
+  "800x800": { width: 800, height: 800 },
 };
 
 const mimeTypes = {
