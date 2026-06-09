@@ -37,6 +37,10 @@ body {
   font-family: "Noto Sans KR", Pretendard, Arial, sans-serif;
 }
 
+a {
+  color: var(--ink);
+}
+
 button,
 input,
 select,
@@ -267,6 +271,36 @@ button:focus-visible {
 
 .creator-info a:hover {
   color: var(--accent-strong);
+}
+
+.policy-page {
+  display: grid;
+  gap: 20px;
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 48px 20px;
+}
+
+.policy-page h1,
+.policy-page h2,
+.policy-page p {
+  margin: 0;
+}
+
+.policy-page section {
+  display: grid;
+  gap: 10px;
+}
+
+.policy-page p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.back-link {
+  width: fit-content;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .shape-options {
