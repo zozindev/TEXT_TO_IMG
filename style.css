@@ -76,6 +76,28 @@ textarea,
   margin-bottom: 24px;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.nav-link {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
 .eyebrow {
   margin: 0 0 6px;
   color: var(--accent);
@@ -290,6 +312,10 @@ button:focus-visible {
 .policy-page section {
   display: grid;
   gap: 10px;
+}
+
+.guide-page {
+  max-width: 820px;
 }
 
 .policy-page p {
@@ -597,6 +623,11 @@ canvas {
   }
 
   .preview-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .title-row {
     align-items: flex-start;
     flex-direction: column;
   }
