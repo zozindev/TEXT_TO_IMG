@@ -252,10 +252,8 @@ function pushTextRuns(runs, text, format) {
   });
 }
 
-function pushNewline(runs) {
-  if (runs.length && runs[runs.length - 1].text !== "\n") {
-    runs.push({ text: "\n", bold: false, underline: false, strike: false });
-  }
+function pushNewline(runs, format = { bold: false, underline: false, strike: false }) {
+  runs.push({ text: "\n", bold: format.bold, underline: format.underline, strike: format.strike });
 }
 
 function collectRuns(node, inherited, runs) {
@@ -269,17 +267,22 @@ function collectRuns(node, inherited, runs) {
   }
 
   if (node.tagName === "BR") {
-    pushNewline(runs);
+    pushNewline(runs, inherited);
     return;
   }
 
   const nextFormat = getElementFormat(node, inherited);
   const startsLength = runs.length;
+  const isNestedBlock = node !== controls.editor && isBlockElement(node);
+
+  if (isNestedBlock && startsLength > 0 && runs[runs.length - 1].text !== "\n") {
+    pushNewline(runs, nextFormat);
+  }
 
   Array.from(node.childNodes).forEach((child) => collectRuns(child, nextFormat, runs));
 
-  if (isBlockElement(node) && runs.length > startsLength) {
-    pushNewline(runs);
+  if (isNestedBlock && runs.length > startsLength && runs[runs.length - 1].text !== "\n") {
+    pushNewline(runs, nextFormat);
   }
 }
 
@@ -332,7 +335,7 @@ function wrapRuns(runs, maxWidth, state) {
     currentWidth += width;
   });
 
-  return lines.filter((line, index) => line.length > 0 || index === 0);
+  return lines.length > 0 ? lines : [[]];
 }
 
 function getLineWidth(line) {
